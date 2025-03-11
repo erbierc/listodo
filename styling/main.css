@@ -1,0 +1,46 @@
+body {
+    background-color: #B1B695;
+    padding: 0;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+nav {
+    padding: 1rem;
+    padding-left: 2rem;
+    /* background-color: beige; */
+    margin-bottom: 1rem;
+    /* display: flex; */
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+input, button {
+    border-radius: 25px;
+    background-color: #B1B695;
+    border: 1px solid black;
+    padding: 1rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-left: 1rem;
+}
+
+h2, h3, h4, h5, h6 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    /* gap: 0.5rem; */
+}
+
+@media screen and (max-width: 480px) {
+    nav {
+        margin-bottom: 0;
+    }
+    
+}
