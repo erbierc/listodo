@@ -1,1 +1,3 @@
 # listodo!
+
+Minimalist task tracker.
