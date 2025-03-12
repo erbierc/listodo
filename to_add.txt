@@ -1,0 +1,2 @@
+> custom alerts (not js alert())
+> clear all
