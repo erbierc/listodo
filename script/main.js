@@ -1,11 +1,14 @@
 var todo = []
-var completed = []
+var completed
 
 // get task list from local storage
-if (localStorage.getItem('todo') && localStorage.getItem('completed')) {
+if (localStorage.getItem('todo'))
     todo = JSON.parse(localStorage.getItem('todo'))
+
+
+if (localStorage.getItem('completed'))
     completed = JSON.parse(localStorage.getItem('completed'))
-}
+else completed = new Array(todo.length).fill(false)
 
 let taskContainer = document.getElementById('tasks')
 
@@ -41,8 +44,6 @@ todoForm.addEventListener('submit', (event) => {
 })
 
 function addTask(taskName) {
-    const taskIndex = todo.indexOf(taskName)
-
     const newTask = document.createElement("div")
     newTask.className = "simple-flex"
 
@@ -52,12 +53,12 @@ function addTask(taskName) {
     const deleteButton = document.createElement("img")
     deleteButton.src = "/assets/delete.svg"
     deleteButton.className = "delete"
-    deleteButton.addEventListener("click", () => removeTask(taskIndex))
+    deleteButton.addEventListener("click", () => removeTask(taskName))
 
     const checkButton = document.createElement("img")
     checkButton.src = "/assets/checkmark-square.svg"
     checkButton.className = "check"
-    checkButton.addEventListener("click", () => completeTask(taskIndex))
+    checkButton.addEventListener("click", () => completeTask(taskName))
 
     const buttonContainer = document.createElement("div")
     buttonContainer.className = "simple-flex"
@@ -70,7 +71,8 @@ function addTask(taskName) {
     taskContainer.appendChild(newTask)
 }
 
-function removeTask(index) {
+function removeTask(task) {
+    const index = todo.indexOf(task)
     todo.splice(index, 1)
     completed.splice(index, 1)
     localStorage.setItem('todo', JSON.stringify(todo))
@@ -78,7 +80,8 @@ function removeTask(index) {
     taskContainer.removeChild(taskContainer.children[index])
 }
 
-function completeTask(index) {
+function completeTask(task) {
+    const index = todo.indexOf(task)
     if (taskContainer.children[index].classList.contains("task-done")) {
         taskContainer.children[index].classList.remove("task-done")
         completed[index] = false
